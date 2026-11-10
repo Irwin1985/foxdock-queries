@@ -35,7 +35,7 @@ DEFINE CLASS QueriesPlugin AS PluginBase
 	cId = "queries"
 	cTitle = "Queries"
 	nOrder = 945
-	cVersion = "0.6.0"
+	cVersion = "0.7.0"
 	lWantsIdle = .T.
 	oModules = .NULL.
 	oStore = .NULL.

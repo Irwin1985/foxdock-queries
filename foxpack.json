@@ -3,7 +3,7 @@
   "kind": "foxdock-plugin",
   "id": "queries",
   "foxdockApi": 1,
-  "version": "0.6.0",
+  "version": "0.7.0",
   "description": "A window for the .sql files of FoxQuery: list them, check them for each engine, run them and compile them into a catalog",
   "license": "MIT",
   "files": [

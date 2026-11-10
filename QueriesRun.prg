@@ -441,7 +441,7 @@ DEFINE CLASS QueriesRun AS Custom
 	*--------------------------------------------------------------
 	PROCEDURE Exec
 		LPARAMETERS tcName, tcOn, toParams, tnMax, tcVerb, tlWhole, tlAgent
-		LOCAL loCat, loS, loX, loDef, lvSql, loG, lcWhy, loState, lcAlias, lnOld, llOk, lnN, loErr, lcErr, loIdent, lvIdent, lcTmp, llWrite
+		LOCAL loCat, loS, loX, loDef, lvSql, loG, lcWhy, loState, lcAlias, lnOld, llOk, lnN, loErr, lcErr, loIdent, lvIdent, lcTmp, llWrite, lvMap
 		This.cLastCode = ""
 		This.cLastError = ""
 		This.cLastCursor = ""
@@ -495,6 +495,7 @@ DEFINE CLASS QueriesRun AS Custom
 		loState = This.SaveIde()
 		lcErr = ""
 		lnOld = .NULL.
+		lvMap = .NULL.
 		TRY
 			IF llWrite
 				lnN = loS.Execute(loX.oDb, tcName, toParams)
@@ -509,7 +510,17 @@ DEFINE CLASS QueriesRun AS Custom
 					lnOld = CURSORGETPROP("MaxRecords", 0)
 					=CURSORSETPROP("MaxRecords", tnMax + 1, 0)
 				ENDIF
+				*-- De una conexión, los binarios como binarios (Varbinary y Blob), como
+				*-- lee data; lo que tuviera la sesión vuelve en el FINALLY.
+				IF loX.cKind # "dbf"
+					lvMap = CURSORGETPROP("MapBinary", 0)
+					=CURSORSETPROP("MapBinary", .T., 0)
+				ENDIF
 				llOk = loS.Run(loX.oDb, tcName, toParams, lcAlias)
+				IF VARTYPE(lvMap) == "L"
+					=CURSORSETPROP("MapBinary", lvMap, 0)
+					lvMap = .NULL.
+				ENDIF
 				IF VARTYPE(lnOld) == "N"
 					=CURSORSETPROP("MaxRecords", lnOld, 0)
 					lnOld = .NULL.
@@ -534,6 +545,9 @@ DEFINE CLASS QueriesRun AS Custom
 		FINALLY
 			IF VARTYPE(lnOld) == "N"
 				=CURSORSETPROP("MaxRecords", lnOld, 0)
+			ENDIF
+			IF VARTYPE(lvMap) == "L"
+				=CURSORSETPROP("MapBinary", lvMap, 0)
 			ENDIF
 			This.RestoreIde(loState)
 		ENDTRY
