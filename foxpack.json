@@ -1,0 +1,20 @@
+{
+  "name": "foxdock-queries",
+  "kind": "foxdock-plugin",
+  "id": "queries",
+  "foxdockApi": 1,
+  "version": "0.6.0",
+  "description": "A window for the .sql files of FoxQuery: list them, check them for each engine, run them and compile them into a catalog",
+  "license": "MIT",
+  "files": [
+    "QueriesPlugin.prg",
+    "QueriesBuild.prg",
+    "QueriesCatalog.prg",
+    "QueriesRun.prg",
+    "QueriesStrings.prg",
+    "QueriesTools.prg"
+  ],
+  "requires": [
+    "foxquery@1.0.2"
+  ]
+}
