@@ -15,7 +15,9 @@ Si `queries` vino con tu instalador de FoxDock, el centro de plugins enseña sus
 
 ## El paquete `queries`
 
-**FoxDock > Consultas** trabaja con los `.sql` de FoxQuery: las consultas SQL de un programa,
+Con el paquete data cargado, **Consultas** es la última barra de **Datos**; sin él, está en el menú de FoxDock. `"options": { "queries": { "menuParent": "" } }` en `config.json` la deja en el menú de FoxDock.
+
+**FoxDock > Datos > Consultas** trabaja con los `.sql` de FoxQuery: las consultas SQL de un programa,
 guardadas en ficheros y ejecutadas por su nombre con sus parámetros. La ventana las lista, las comprueba para un
 motor, enseña el SQL que le llega a cada motor y las ejecuta en las tablas DBF del IDE, en una conexión de **Datos**
 o en un handle de ODBC. Esta versión trae sus tres módulos: `catalog`, `run` y `build`, que compila la carpeta en un

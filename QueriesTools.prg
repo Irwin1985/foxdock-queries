@@ -220,7 +220,7 @@ ENDDEFINE
 
 DEFINE CLASS IdeQueriesListTool AS IdeQueriesTool
 	ToolName = "ide_queries_list"
-	ToolDescription = "The FoxQuery queries of this Visual FoxPro IDE (FoxDock > Queries): the .sql files of the folder of " + ;
+	ToolDescription = "The FoxQuery queries of this Visual FoxPro IDE (FoxDock > Data > Queries, or FoxDock > Queries without the data package): the .sql files of the folder of " + ;
 		"the project (queries\ next to the .pjx of the active project, or of the current folder; options.queries.folder " + ;
 		"changes it), or of 'folder'. For each query that loads: name, kind (read or write), description, params (name, " + ;
 		"type, required, list, default), sort, idents (name, form) and variants (the engines with an -- engine: section). " + ;
@@ -228,7 +228,7 @@ DEFINE CLASS IdeQueriesListTool AS IdeQueriesTool
 
 	FUNCTION DefineParameters()
 		THIS.AddParam("folder", "string", "A folder of .sql files to read instead of the one of the project; it is read " + ;
-			"apart and does not change what FoxDock > Queries shows.", .F.)
+			"apart and does not change what the Queries menu shows.", .F.)
 	ENDFUNC
 
 	FUNCTION Run(toContext)
@@ -273,7 +273,7 @@ ENDDEFINE
 
 DEFINE CLASS IdeQueriesGetTool AS IdeQueriesTool
 	ToolName = "ide_queries_get"
-	ToolDescription = "One FoxQuery query of the folder of the project (FoxDock > Queries), by its name: its header " + ;
+	ToolDescription = "One FoxQuery query of the folder of the project (FoxDock > Data > Queries, or FoxDock > Queries without the data package), by its name: its header " + ;
 		"as FoxQuery read it (name, kind, description, params, sort, idents, variants), its file and the text of the " + ;
 		".sql as it is on disk. A file that does not load says so (broken, error). Reads only."
 
@@ -429,7 +429,7 @@ ENDDEFINE
 
 DEFINE CLASS IdeQueriesRunTool AS IdeQueriesTool
 	ToolName = "ide_queries_run"
-	ToolDescription = "Runs one READ query of the project (FoxDock > Queries) by its name, with its parameters, and returns " + ;
+	ToolDescription = "Runs one READ query of the project (FoxDock > Data > Queries, or FoxDock > Queries without the data package) by its name, with its parameters, and returns " + ;
 		"its rows as JSON, as ide_data_db_query does (fields in lower case, text without its padding, dates in ISO 8601, " + ;
 		"null). 'on' says where: dbf (the DBF tables of data session 1 of the IDE), the id of a connection of FoxDock > " + ;
 		"Data > Connections (only with agentCanRead true), or handle:<n> (an ODBC handle open in the IDE). The agent never " + ;
@@ -481,7 +481,7 @@ ENDDEFINE
 DEFINE CLASS IdeQueriesExecuteTool AS IdeQueriesTool
 	ToolName = "ide_queries_execute"
 	lActsOnIde = .T.
-	ToolDescription = "Runs one WRITE query of the project (FoxDock > Queries) by its name, with its parameters, and " + ;
+	ToolDescription = "Runs one WRITE query of the project (FoxDock > Data > Queries, or FoxDock > Queries without the data package) by its name, with its parameters, and " + ;
 		"returns the rows it changed. 'on' as in ide_queries_run: dbf, the id of a connection (only with agentCanRead " + ;
 		"and allowWrite true), or handle:<n>. The agent never sends SQL: FoxQuery resolves the text, and it goes one " + ;
 		"statement at a time; an UPDATE or a DELETE without WHERE, a DROP or a TRUNCATE only with wholeTable true. " + ;
@@ -525,7 +525,7 @@ ENDDEFINE
 DEFINE CLASS IdeQueriesBuildTool AS IdeQueriesTool
 	ToolName = "ide_queries_build"
 	lActsOnIde = .T.
-	ToolDescription = "Compiles the queries folder of the project (FoxDock > Queries) into a .fq catalog, as FoxDock > " + ;
+	ToolDescription = "Compiles the queries folder of the project (FoxDock > Data > Queries, or FoxDock > Queries without the data package) into a .fq catalog, as " + ;
 		"Queries > Build catalog... does, with the key the programmer remembered for the active project (Remember in " + ;
 		"that window). Without a remembered key it compiles with the fixed key of FoxQuery and says so (keyed: false). " + ;
 		"The key never goes through this tool, in or out. 'fq' is the <project>.fq next to the .pjx if left out; a .fq " + ;
@@ -580,7 +580,7 @@ ENDDEFINE
 DEFINE CLASS IdeQueriesSaveTool AS IdeQueriesTool
 	ToolName = "ide_queries_save"
 	lActsOnIde = .T.
-	ToolDescription = "Writes one query of the project (FoxDock > Queries) as queries\<name>.sql, in the code page of VFP " + ;
+	ToolDescription = "Writes one query of the project (FoxDock > Data > Queries, or FoxDock > Queries without the data package) as queries\<name>.sql, in the code page of VFP " + ;
 		"(CP1252), after FoxQuery loads it clean: 'sql' is the whole file, its header (-- name:, -- description:, -- kind:, " + ;
 		"-- param:, -- sort:, -- ident:) and its SQL. The -- name: of the header is what counts, and it has to be 'name' " + ;
 		"(HEADER_NAME_MISMATCH if not). With errors nothing is written, and they come back with FoxQuery's code and line. " + ;

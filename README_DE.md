@@ -15,7 +15,9 @@ Wenn `queries` mit Ihrem FoxDock-Installer kam, zeigt das Plugin-Center seine ne
 
 ## Das Paket `queries`
 
-**FoxDock > Abfragen** arbeitet mit den `.sql`-Dateien von FoxQuery: den SQL-Abfragen eines Programms,
+Mit dem geladenen Paket data ist **Abfragen** der letzte Menüpunkt von **Daten**; ohne es steht es im FoxDock-Menü. `"options": { "queries": { "menuParent": "" } }` in `config.json` lässt es im FoxDock-Menü.
+
+**FoxDock > Daten > Abfragen** arbeitet mit den `.sql`-Dateien von FoxQuery: den SQL-Abfragen eines Programms,
 in Dateien abgelegt und über ihren Namen mit ihren Parametern ausgeführt. Das Fenster listet sie auf, prüft sie für
 eine Datenbank, zeigt das SQL, das jede Datenbank bekommt, und führt sie auf den DBF-Tabellen der IDE, auf einer
 Verbindung von **Daten** oder auf einem ODBC-Handle aus. Diese Version bringt ihre drei Module: `catalog`, `run` und

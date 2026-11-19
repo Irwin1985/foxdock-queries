@@ -15,7 +15,9 @@ If `queries` came with your FoxDock installer, the plugin center shows its new v
 
 ## The `queries` package
 
-**FoxDock > Queries** works with the `.sql` files of FoxQuery: the SQL queries of a program, kept in
+With the data package loaded, **Queries** is the last bar of **Data**; without it, it is on the FoxDock menu. `"options": { "queries": { "menuParent": "" } }` in `config.json` keeps it on the FoxDock menu.
+
+**FoxDock > Data > Queries** works with the `.sql` files of FoxQuery: the SQL queries of a program, kept in
 files and run by their name with their parameters. The window lists them, checks them for an engine and shows the SQL
 each engine gets, and runs them on the DBF tables of the IDE, on a connection of **Data** or on an ODBC handle. This
 version has its three modules: `catalog`, `run` and `build`, which compiles the folder into a `.fq` catalog.
